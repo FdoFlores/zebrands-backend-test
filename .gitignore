@@ -1,0 +1,12 @@
+# Django and python
+db.sqlite3
+**/migrations/**
+!**/migrations/__init__.py
+__pycache__
+
+# Docker and venv
+venv
+docker
+
+# Utils
+*.env
