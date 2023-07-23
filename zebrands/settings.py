@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.api',
+    'apps.frontend',
+
+    'rest_framework',
+    'safedelete'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'GMT-7'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
