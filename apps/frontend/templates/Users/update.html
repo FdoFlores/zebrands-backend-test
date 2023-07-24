@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+{% block content %}
+
+<div class="container text-center pt-3">
+    <h1>Update Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/create_product/" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

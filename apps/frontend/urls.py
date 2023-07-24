@@ -1,10 +1,31 @@
 from django.urls import path
-from .views import IndexView, LoginViewCustom, LogoutView
+from .views import *
 
 urlpatterns = [
     # Home page URL
-    path('', IndexView.as_view(), name='index'),
+    path('index/', IndexViewAnon.as_view(), name='index_anon'),
+    path('dashboard/', DashboardAdmin.as_view(), name='index_admin'),
+
+    # BRANDS
+    path('create_brand/', CreateBrandView, name='create_brand_front'),
+    path('delete_brand/<int:pk>', DeleteBrandView, name='delete_brand_front'),
+    path('update_brand/<int:pk>', UpdateBrandView, name='update_brand_front'),
+
+    # Products
+    path('create_product/', CreateProductView, name='create_product_front'),
+    path('delete_product/<int:pk>/', DeleteProductView, name='delete_product_front'),
+    path('update_product/<int:pk>/', UpdateProductView, name='update_product_front'),
+
+    #Users
+    path('create_user/', CreateUserView, name='create_user_front'),
+    path('delete_user/<int:pk>/', DeleteUserView, name='delete_user_front'),
+    path('update_user/<int:pk>/', UpdateUserView, name='update_user_front'),
+
+    # Buyout
+    path('create_buyout/', CreateBuyoutView, name='create_buyout_front'),
+
+    #LOGIN
     path('login/', LoginViewCustom.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutViewCustom.as_view(), name='logout'),
 
 ]
