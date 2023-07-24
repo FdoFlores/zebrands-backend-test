@@ -27,6 +27,7 @@ urlpatterns = [
 
 
     #LOGIN
+    path('', LoginViewCustom.as_view(), name='login'),
     path('login/', LoginViewCustom.as_view(), name='login'),
     path('logout/', LogoutViewCustom.as_view(), name='logout'),
 

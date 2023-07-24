@@ -198,7 +198,7 @@ def CreateUserView(request):
     else:
         form = UserCreationForm()
 
-    users = User.objects.filter(deleted=None).order_by('id')
+    users = User.objects.all().order_by('id')
     context = {
         'form': form,
         'users': users
