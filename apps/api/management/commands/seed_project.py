@@ -2,6 +2,7 @@ import json
 import os
 import random
 import time
+from dotenv import load_dotenv
 from datetime import date, datetime, timedelta
 
 from django.conf import settings
@@ -10,6 +11,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Command(BaseCommand):
@@ -26,7 +28,7 @@ def create_groups():
         defaults = {
             'first_name' : 'admin',
             'last_name' : 'admin',
-            'email' : 'admin@gmail.com',
+            'email' : os.getenv('ADMIN_EMAIL'),
             'password' : password
         }
     )
@@ -71,7 +73,6 @@ def create_groups():
         'view_buyout',
     ]
     for permission in admin_permissions:
-        print(permission,'---')
         permission = Permission.objects.get(codename=permission)
         admin_group.permissions.add(permission)
 
@@ -82,11 +83,10 @@ def create_groups():
     ]
 
     for permission in anon_permissions:
-        print(permission,'|||')
         permission = Permission.objects.get(codename=permission)
         user_group.permissions.add(permission)
 
 def run_seed():
-    print('Seeding dataaaaaaaaaaaaaaaaaa...')
+    print('Seeding data...')
     create_groups()
     print('Seeding finished.')

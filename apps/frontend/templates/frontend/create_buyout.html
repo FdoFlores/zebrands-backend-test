@@ -1,0 +1,17 @@
+{% extends 'base_anon.html' %}
+
+{% block title %}Index{% endblock %}
+{% block content %}
+<div class="container text-center pt-3">
+    <h1>Create Buyout</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Buy</button>
+        <a class="btn btn-secondary" href="/index">Cancel</a>
+    </form>
+</div>
+
+
+{% endblock %}
+

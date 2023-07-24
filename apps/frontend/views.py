@@ -16,8 +16,11 @@ class DashboardAdmin(ListView):
     context_object_name = 'products'
     paginate_by = 10
 
-class IndexViewAnon(TemplateView):
+class IndexViewAnon(ListView):
+    model = Product
     template_name = "frontend/index_anon.html"
+    context_object_name = 'products'
+    paginate_by = 10
 
 class LogoutViewCustom(LogoutView):
     def get_next_page(self):
@@ -250,3 +253,19 @@ def CreateBuyoutView(request):
         'buyouts': buyouts
     }
     return render(request, 'Buyouts/create.html', context)
+
+def CreateBuyoutAnonView(request):
+    if request.method == 'POST':
+        form = BuyoutForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index_anon')
+    else:
+        form = BuyoutForm(request.user)
+
+    buyouts = Buyout.objects.filter(deleted=None).order_by('id')
+    context = {
+        'form': form,
+        'buyouts': buyouts
+    }
+    return render(request, 'frontend/create_buyout.html', context)

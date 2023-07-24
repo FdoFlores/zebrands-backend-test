@@ -20,7 +20,7 @@ def send_buyout_notification_email(sender, instance, created, **kwargs):
         for admin in admins:
             mails.append(admin.email)
         subject = 'Zebrands Buyout Confirmation'
-        message = f'The user {instance.user.username} successfully purchased the product: {instance.product}.'
+        message = f'The user {instance.user.username} successfully purchased the product: {instance.product} for the price {instance.buyout_price}.'
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = mails
         print(send_mail(subject, message, from_email, to_email, fail_silently=True))

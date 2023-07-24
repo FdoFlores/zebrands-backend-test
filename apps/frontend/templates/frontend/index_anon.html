@@ -1,8 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'base_anon.html' %}
 
 {% block title %}Index{% endblock %}
 {% block content %}
 
-<a class="btn btn-secondary" href="/logout/">Logout</a>
+<div class="container">
+    <h1 class="text-center pt-3">AVAILABLE PRODUCTS</h1>
+    <a href="{% url 'create_buyout_anon' %}"><i class="fa-solid fa-plus">  Buy a product</i></a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Brand</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <th scope="row">{{product.sku}}</th>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.brand}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
 
 {% endblock %}

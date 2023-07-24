@@ -23,6 +23,8 @@ urlpatterns = [
 
     # Buyout
     path('create_buyout/', CreateBuyoutView, name='create_buyout_front'),
+    path('create_buyout_anon/', CreateBuyoutAnonView, name='create_buyout_anon'),
+
 
     #LOGIN
     path('login/', LoginViewCustom.as_view(), name='login'),
