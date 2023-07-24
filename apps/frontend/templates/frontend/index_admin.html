@@ -8,23 +8,26 @@
         Hola! el flujo principal de esta aplicación web es primero crear una "Brand" despues un "Product" para que así los usuarios publicos puedan consultarlos <br>
         Me tomé la libertad de inventar un flujo muy basico y sencillo de compras, en las que los usuarios publicos entran a ver la lista de productos, presionan realizar una compra
         y toman el producto que desean comprar, creando así un "Buyout" cuando se realiza una compra se le notifica a los administradores y se les manda un correo con la información de la compra.
+        Esto con el propósito de mantener el record de las veces que un usuario revisa o adquiere un producto, y con esta información se pueden realizar los reportes a futuro.
         
         <br><br>
         Además diseñé este front como ejemplo de fullstack en donde integro la api hecha con django rest framework y el frontend hecho con django.
         <br><br>
         Como administrador puedes ver, crear, editar y eliminar Brands, Products y Users. Los Buyouts solo pueden ser vistos, porque en teoría nadie debería hacer cambios a una compra porque podría comprometer la consistencia de la información.
+        Cuando se modifica un product se le manda un correo a TODOS los administradores notificando esta acción. (en un futuro se podría mejorar el mensaje del correo enviado)
         <br><br>
         Como usuario publico puedes ver los productos y realizar una compra.
         <br><br>
 
         Limitantes en el sistema: <br>
         -El CRUD de users solo permite crear usuarios publicos, por falta de tiempo no logré terminar el flujo de permisos para administradores y usuarios,
-        por lo tanto el usuario con las credenciales "admin, 12345" es el unico administrador, todos los usuarios creados con el CRUD de users son considerados usuarios publicos.
+        por lo tanto los usuarios con las credenciales "admin, 12345" y "admin2, 12345" son los unicos administradores, todos los usuarios creados con el CRUD de users son considerados usuarios publicos.
         <br><br>
         Mejoras que podrían integrarse en un futuro: <br>
         -Diseñar un flujo que guarde los precios de los productos de acuerdo a la fecha de la compra, actualmente se genera mucha información redundante ya que guardo
         el precio del producto que tenía en el momento que se realizó la compra por cada compra registrada, se me ocurrió que podría tener una tabla con los precios y
-        su fecha de modificación, así podría quitar el campo de buyout_price de la compra y deducirla en base a la fecha en la que se generó la compra. <br><br>
+        su fecha de modificación, así podría quitar el campo de buyout_price de la compra y deducirla en base a la fecha en la que se generó la compra. Esto mejoraria
+        la calidad y el tiempo de creación de los reportes. <br><br>
         -Tener un control de unidades que se haga en automatico con signals de Django, podría realizarse despues de que se mandan los correos, así se hace una vez por compra.
         <br><br>
         -En el CRUD de usuarios, poder manejar los permisos de los usuarios, permitiendo volver a un usuario administrador o usuario publico en cualquier momento.

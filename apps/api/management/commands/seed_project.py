@@ -33,6 +33,16 @@ def create_groups():
         }
     )
 
+    admin2, created = User.objects.get_or_create(
+        username = 'admin2',
+        defaults = {
+            'first_name' : 'admin2',
+            'last_name' : 'admin2',
+            'email' : os.getenv('ADMIN_EMAIL'),
+            'password' : password
+        }
+    )
+
     anon, created = User.objects.get_or_create(
         username = 'anon',
         defaults = {
@@ -50,6 +60,7 @@ def create_groups():
 
     anon.groups.add(user_group)
     admin.groups.add(admin_group)
+    admin2.groups.add(admin_group)
 
     admin_permissions = [
         'add_user',
