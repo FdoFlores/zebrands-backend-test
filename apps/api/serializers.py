@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Brand, Product
+from .models import Brand, Product, Buyout
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group, Permission
+
+class BuyoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Buyout
+        fields = '__all__'
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:

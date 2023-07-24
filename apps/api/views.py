@@ -3,8 +3,24 @@ from django.views.generic import ListView, TemplateView
 from rest_framework import generics, renderers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Brand, User, Product
-from .serializers import BrandSerializer, UserSerializer, ProductSerializer
+from .models import Brand, User, Product, Buyout
+from .serializers import BrandSerializer, UserSerializer, ProductSerializer, BuyoutSerializer
+
+# Buoyut VIEWS
+class BuyoutCreateView(generics.CreateAPIView):
+    serializer_class = BuyoutSerializer
+
+class BuyoutUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = Buyout.objects.all()
+    serializer_class = BuyoutSerializer
+
+class BuyoutListView(generics.ListAPIView):
+    queryset = Buyout.objects.all().order_by('id')
+    serializer_class = BuyoutSerializer
+
+class BuyoutDeleteView(generics.RetrieveDestroyAPIView):
+    queryset = Buyout.objects.all()
+    serializer_class = BuyoutSerializer
 
 # Brand VIEWS
 class BrandCreateView(generics.CreateAPIView):

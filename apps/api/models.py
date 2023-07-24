@@ -31,7 +31,7 @@ class Product(SafeDeleteModel):
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
 
-class Buyouts(SafeDeleteModel):
+class Buyout(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
